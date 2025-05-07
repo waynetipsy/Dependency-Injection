@@ -1,9 +1,13 @@
 package app.ify.dependencyinjection
 
 fun main(){
-    val engine = Engine()
+    // Hilt/Dagger generates the DaggerAppComponent
+    // class at compile-time
+    val appComponent : AppComponent = DaggerAppComponent.create()
 
-    // Dependency is Injected Here
-    val car = Car(engine)
-    car.drive()
+    //Retrieve the car instance
+    var car = Car()
+
+    // Inject Dependencies into the Car's Fields
+    appComponent.inject(car)
 }
